@@ -6,11 +6,11 @@ require 'mybatis/cli/version'
 Gem::Specification.new do |spec|
   spec.name          = "mybatis-cli"
   spec.version       = Mybatis::Cli::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
+  spec.authors       = ["tong"]
+  spec.email         = ["php12345@163.com"]
+  spec.summary       = %q{mybatis quickly start.}
   spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/typ0520/mybatis-cli"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

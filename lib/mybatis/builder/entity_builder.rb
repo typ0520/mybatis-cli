@@ -12,8 +12,9 @@ module Mybatis
 
       FileUtils.makedirs entity_path unless File.directory? entity_path
 
+      file_path = "#{entity_path}#{self.name}.java"
       #实体类对应文件
-      file = File.new "#{entity_path}#{self.name}.java" ,"w"
+      file = File.new file_path ,"w"
       file.puts "package #{self.package};" if self.package
       file.puts
       file.puts "/**"
@@ -40,6 +41,8 @@ module Mybatis
       end
       file.puts "}"
       file.close
+
+      puts "create file: #{file_path}"
     end
 
     private
