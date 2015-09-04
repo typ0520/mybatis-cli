@@ -2,6 +2,7 @@ require_relative "version"
 require_relative "attribute"
 require_relative "./builder/entity_builder"
 require_relative "./builder/mapper_builder"
+require_relative "./builder/mapper_xml_builder"
 
 module Mybatis
   class EntityInfo
@@ -11,6 +12,7 @@ module Mybatis
 
     include EntityBuilder
     include MapperBuilder
+    include MapperXMLBuilder
 
     class << self
       def parse_form_cli(args)
@@ -36,6 +38,11 @@ module Mybatis
 
     def initialize
       self.attributes = []
+    end
+
+    def jont_package_and_name
+      return "#{self.package}.#{self.name}" if self.package
+      "#{self.name}"
     end
   end
 end

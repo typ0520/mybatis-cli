@@ -11,6 +11,7 @@ module Mybatis
     entity_info = Mybatis::EntityInfo.parse_form_cli args
     entity_info.build_entity '/Users/tong/Desktop/tmp/src/main/java'
     entity_info.build_mapper_xml '/Users/tong/Desktop/tmp/src/main/resources'
+    entity_info.build_mapper '/Users/tong/Desktop/tmp/src/main/java'
 
   end
 
