@@ -1,18 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mybatis/cli/version'
+require 'mybatis/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "mybatis-cli"
-  spec.version       = Mybatis::Cli::VERSION
+  spec.version       = Mybatis::VERSION
   spec.authors       = ["tong"]
   spec.email         = ["php12345@163.com"]
-  spec.summary       = %q{mybatis quickly start.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{mybatis command line tool.}
+  spec.description   = %q{mybatis command line tool..}
   spec.homepage      = "https://github.com/typ0520/mybatis-cli"
   spec.license       = "MIT"
-
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
