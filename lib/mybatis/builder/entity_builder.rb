@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require "fileutils"
 require_relative "../util/string_ext"
 
@@ -10,6 +12,7 @@ module Mybatis
       #实体类存放目录
       entity_path = get_entity_path workspace
 
+      puts "entity_path #{entity_path}"
       FileUtils.makedirs entity_path unless File.directory? entity_path
 
       file_path = "#{entity_path}#{self.name}.java"
