@@ -1,22 +1,28 @@
-require "fileutils"
-require_relative "./mybatis/entity_info"
+# encoding: utf-8
+
+require 'thor'
+require 'fileutils'
+require_relative './mybatis/version'
+require_relative './mybatis/cli'
+require_relative './mybatis/util/generate'
+require_relative '../lib/mybatis/util/string_ext'
 
 module Mybatis
-  def self.start(args)
-    if args.size == 0
-      puts 'Bad args'
-      exit 0
+  class << self
+    include Mybatis::Generate
+
+    def launch_dir
+      Dir.pwd
     end
-    self.init
-    entity_info = Mybatis::EntityInfo.parse_form_cli args
-    entity_info.build_entity '/Users/tong/Desktop/tmp/src/main/java'
-    entity_info.build_mapper_xml '/Users/tong/Desktop/tmp/src/main/resources'
-    entity_info.build_mapper '/Users/tong/Desktop/tmp/src/main/java'
 
-  end
-
-  def self.init
-    FileUtils.makedirs '/Users/tong/Desktop/tmp/src/main/java' unless File.directory? '/Users/tong/Desktop/tmp/src/main/java'
-    FileUtils.makedirs '/Users/tong/Desktop/tmp/src/main/resources' unless File.directory? '/Users/tong/Desktop/tmp/src/main/resources'
+    def confirm_options(description)
+      result = ''
+      until result == 'y' || result == 'n'
+        puts description
+        result = $stdin.gets.sub /[\s]/,''
+      end
+      yield result == 'y' ? true : false
+    end
   end
 end
+
