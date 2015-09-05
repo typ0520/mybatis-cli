@@ -44,7 +44,7 @@ module Mybatis
         self.attributes = []
       end
 
-      def jont_package_and_po_name
+      def join_package_and_po_name
         return "#{self.package}.#{self.po_name}" if self.package
         "#{self.po_name}"
       end

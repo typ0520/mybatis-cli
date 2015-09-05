@@ -1,8 +1,5 @@
 # encoding: utf-8
 
-require "fileutils"
-require_relative "../util/string_ext"
-
 module Mybatis
   module MapperXMLBuilder
     public

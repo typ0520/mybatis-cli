@@ -1,10 +1,11 @@
 # encoding: utf-8
 
 require 'thor'
-require "fileutils"
-require_relative "./mybatis/cli"
-require_relative "../lib/mybatis/util/generate"
-require_relative "../lib/mybatis/util/string_ext"
+require 'fileutils'
+require_relative './mybatis/version'
+require_relative './mybatis/cli'
+require_relative './mybatis/util/generate'
+require_relative '../lib/mybatis/util/string_ext'
 
 module Mybatis
   class << self

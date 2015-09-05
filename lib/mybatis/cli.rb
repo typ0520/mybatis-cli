@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Mybatis
   class CLI < Thor
     class_option :help,    type: :boolean, aliases: "-h", desc: "Show this help message and quit"
@@ -12,6 +14,13 @@ module Mybatis
 
     def generate *args
       Mybatis.generate(*args, options)
+    end
+
+    desc "version", "Show Mybatis-CLI version number and quit (aliases: v)"
+    map ["v", "-v", "--version"] => :version
+
+    def version
+      say "mybatis-command-line-tool  #{Mybatis::VERSION}"
     end
   end
 end

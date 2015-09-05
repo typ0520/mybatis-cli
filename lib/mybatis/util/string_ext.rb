@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-
 class String
   #首字母变大写
   def upcase_first

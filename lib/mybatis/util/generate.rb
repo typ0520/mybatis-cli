@@ -11,7 +11,6 @@ module Mybatis
     include Mybatis::Builder
 
     def generate *args, options
-      p options
       context = Mybatis::Generate::GenerateContext.instance_with_options options
 
       for folder in [self.get_source_folder,self.get_resources_folder]
@@ -24,8 +23,8 @@ module Mybatis
       end
 
       Mybatis::Builder.build_po self.get_source_folder,context
+      Mybatis::Builder.build_mapper self.get_source_folder,context
       Mybatis::Builder.build_mapper_xml self.get_resources_folder,context
-      # build_mapper_xml context
     end
   end
 end
