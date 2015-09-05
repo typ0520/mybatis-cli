@@ -8,10 +8,10 @@ module Mybatis
       attr_accessor :type
 
       class << self
-        def parse_from_cli(args)
+        def instance_with_options str
           attribute = self.new
-          attribute.name = args.downcase_first
-          attribute.db_field_name = attribute.name.replace_upcase_to_underline
+          attribute.field_name = str.replace_underline_upcase_to.downcase_first
+          attribute.column_name = str
           attribute
         end
       end
@@ -22,6 +22,22 @@ module Mybatis
       attr_accessor :po_name
       attr_accessor :table_name
       attr_accessor :attributes
+
+      class << self
+        def instance_with_options options
+          #{"package"=>"package", "name"=>"Order", "tablename"=>"t_order", "list"=>["id", "order_no", "create_time"]}
+          context = self.new
+          context.package = options[:package]
+          context.po_name = options[:name].upcase_first
+          context.table_name =
+              options[:tablename] != '' ? options[:tablename] : "t#{context.po_name.replace_upcase_to_underline}"
+          for str in options[:list]
+            attr = Mybatis::Generate::Attribute.instance_with_options str
+            context.attributes << attr
+          end
+          context
+        end
+      end
 
       def initialize
         self.package = ''
