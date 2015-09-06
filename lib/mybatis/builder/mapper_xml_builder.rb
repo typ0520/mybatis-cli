@@ -67,9 +67,13 @@ module Mybatis
     def get_mapper_xml_path(workspace,context)
       mapper_path = workspace
       mapper_path << '/' unless mapper_path.end_with? '/'
-      mapper_path << context.package.gsub(/\./,'/') if context.package
+      if context.mapper_package != ''
+        mapper_path << context.mapper_package.gsub(/\./,'/')
+      else
+        mapper_path << context.package.gsub(/\./,'/') if context.package
+        mapper_path << 'mapper'
+      end
       mapper_path << '/' unless mapper_path.end_with? '/'
-      mapper_path << 'mapper/'
     end
 
     def get_class_path(context)

@@ -19,6 +19,7 @@ module Mybatis
 
     class GenerateContext
       attr_accessor :package
+      attr_accessor :mapper_package
       attr_accessor :po_name
       attr_accessor :table_name
       attr_accessor :attributes
@@ -26,8 +27,10 @@ module Mybatis
       class << self
         def instance_with_options options
           #{"package"=>"package", "name"=>"Order", "tablename"=>"t_order", "list"=>["id", "order_no", "create_time"]}
+          p options
           context = self.new
           context.package = options[:package]
+          context.mapper_package = options[:mapper_package]
           context.po_name = options[:name].upcase_first
           context.table_name =
               options[:tablename] != '' ? options[:tablename] : "t#{context.po_name.replace_upcase_to_underline}"
