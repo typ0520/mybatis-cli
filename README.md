@@ -49,6 +49,15 @@ Or install it yourself as:
     $ gem install mybatis-cli
 
 ## Usage
+  mybatis g -p com.test.dao.po -n user -m com.test.dao --list user_id username create_time update_time
+
+Options:
+  -n, --name=NAME                        # po class name
+  -p, [--package=PACKAGE]                # po class package name
+  -m, [--mapper-package=MAPPER_PACKAGE]  # mapper class package name
+  -t, [--tablename=TABLENAME]            # table name
+  -l, --list=one two three               # table columns
+  -h, [--help], [--no-help]              # Show this help message and quit
 
 ## Contributing
 
