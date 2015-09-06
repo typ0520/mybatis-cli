@@ -2,14 +2,14 @@
 
 根据命令行参数生成mybatis对一张表增删改查的相关文件(po类、mapper类、mapper的xml)
 例如: test项目 目录结构如下
-"
+```ruby
 .
 ├── pom.xml
 └── src
     └── main
         ├── java
         └── resources
-"
+```
 
 t_user表的增删改查
 mybatis g -p com.test.dao.po -n user -m com.test.dao --list user_id username create_time update_time
