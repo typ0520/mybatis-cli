@@ -2,12 +2,14 @@
 
 根据命令行参数生成mybatis对一张表增删改查的相关文件(po类、mapper类、mapper的xml)
 例如: test项目 目录结构如下
+"
 .
 ├── pom.xml
 └── src
     └── main
         ├── java
         └── resources
+"
 
 t_user表的增删改查
 mybatis g -p com.test.dao.po -n user -m com.test.dao --list user_id username create_time update_time
@@ -49,6 +51,15 @@ Or install it yourself as:
     $ gem install mybatis-cli
 
 ## Usage
+  mybatis g -p com.test.dao.po -n user -m com.test.dao --list user_id username create_time update_time
+
+Options:
+  -n, --name=NAME                        # po class name
+  -p, [--package=PACKAGE]                # po class package name
+  -m, [--mapper-package=MAPPER_PACKAGE]  # mapper class package name
+  -t, [--tablename=TABLENAME]            # table name
+  -l, --list=one two three               # table columns
+  -h, [--help], [--no-help]              # Show this help message and quit
 
 ## Contributing
 
