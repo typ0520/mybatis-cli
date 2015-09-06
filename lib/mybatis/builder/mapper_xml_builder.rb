@@ -18,7 +18,7 @@ module Mybatis
       file.puts
       file.puts "<mapper namespace=\"#{self.get_class_path context}Mapper\">"
       file.puts "    <resultMap id=\"BaseResultMap\" type=\"#{self.get_class_path context}\" >"
-      context.attributes.each_with_index do |attr,index|
+      context.attributes.each_with_index do |attr|
         file.puts "        <result column=\"#{attr.column_name}\" property=\"#{attr.field_name}\" />"
       end
       file.puts "    </resultMap>"
@@ -50,7 +50,7 @@ module Mybatis
         if index != context.attributes.size - 1
           result << ','
         end
-        file.puts "       #{attr.field_name} = #{result}"
+        file.puts "       #{attr.column_name} = #{result}"
       end
       file.puts "     where id = \#{id}"
       file.puts '   </update>'
