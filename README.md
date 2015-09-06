@@ -1,6 +1,36 @@
 # Mybatis::Cli
 
-TODO: Write a gem description
+根据命令行参数生成mybatis对一张表增删改查的相关文件(po类、mapper类、mapper的xml)
+例如: test项目 目录结构如下
+.
+├── pom.xml
+└── src
+    └── main
+        ├── java
+        └── resources
+
+t_user表的增删改查
+mybatis g -p com.test.dao.po -n user -m com.test.dao --list user_id username create_time update_time
+
+执行后
+.
+├── pom.xml
+└── src
+    └── main
+        ├── java
+        │   └── com
+        │       └── test
+        │           └── dao
+        │               ├── mapper
+        │               │   └── UserMapper.java
+        │               └── po
+        │                   └── User.java
+        └── resources
+            └── com
+                └── test
+                    └── dao
+                        └── mapper
+                            └── UserMapper.xml
 
 ## Installation
 
@@ -19,8 +49,6 @@ Or install it yourself as:
     $ gem install mybatis-cli
 
 ## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 

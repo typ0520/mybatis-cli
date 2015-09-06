@@ -46,7 +46,6 @@ module Mybatis
         mapper_path << context.mapper_package.gsub(/\./,'/')
       else
         mapper_path << context.package.gsub(/\./,'/') if context.package
-        mapper_path << 'mapper'
       end
       mapper_path << '/' unless mapper_path.end_with? '/'
     end
