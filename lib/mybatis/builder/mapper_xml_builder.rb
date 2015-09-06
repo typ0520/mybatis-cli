@@ -17,6 +17,12 @@ module Mybatis
       file.puts "		\"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">"
       file.puts
       file.puts "<mapper namespace=\"#{self.get_class_path context}Mapper\">"
+      file.puts "    <resultMap id=\"BaseResultMap\" type=\"#{self.get_class_path context}\" >"
+      context.attributes.each_with_index do |attr|
+        file.puts "        <result column=\"#{attr.column_name}\" property=\"#{attr.field_name}\" />"
+      end
+      file.puts "    </resultMap>"
+      file.puts
       file.puts "   <insert id=\"insert\" parameterType=\"#{self.get_class_path context} \">"
       file.puts "     insert into #{self.get_table_name context} ("
       file.puts "       #{self.get_all_column context}"
@@ -44,12 +50,12 @@ module Mybatis
         if index != context.attributes.size - 1
           result << ','
         end
-        file.puts "       #{attr.field_name} = #{result}"
+        file.puts "       #{attr.column_name} = #{result}"
       end
       file.puts "     where id = \#{id}"
       file.puts '   </update>'
       file.puts
-      file.puts "   <select id=\"select\" resultType=\"#{self.get_class_path context}\">"
+      file.puts "   <select id=\"select\" resultType=\"#{self.get_class_path context}\" resultMap=\"BaseResultMap\">"
       file.puts "     select * from #{self.get_table_name context} where id = \#{id}"
       file.puts '   </select>'
       file.puts '</mapper>'
