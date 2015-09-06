@@ -16,7 +16,8 @@ module Mybatis
       file.puts "<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\""
       file.puts "		\"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">"
       file.puts
-      file.puts "<mapper namespace=\"#{self.get_class_path context}Mapper\">"
+      mapper_folder = "#{self.get_mapper_folder context}"
+      file.puts "<mapper namespace=\"#{mapper_folder}Mapper\">"
       file.puts "    <resultMap id=\"BaseResultMap\" type=\"#{self.get_class_path context}\" >"
       context.attributes.each_with_index do |attr|
         file.puts "        <result column=\"#{attr.column_name}\" property=\"#{attr.field_name}\" />"
@@ -62,6 +63,16 @@ module Mybatis
       file.close
 
       puts "create file: #{file_path}"
+    end
+
+    def get_mapper_folder(context)
+      result = "#{context.po_name}"
+      if context.mapper_package != ''
+        result = "#{context.mapper_package}.#{context.po_name.upcase_first}" if context.mapper_package
+      else
+        result = "#{context.package}.#{context.po_name}" if context.package
+      end
+      result
     end
 
     def get_mapper_xml_path(workspace,context)

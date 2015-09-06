@@ -12,7 +12,11 @@ module Mybatis
       file_path = "#{mapper_path}#{context.po_name}Mapper.java"
       #实体类对应文件
       file = File.new file_path ,"w"
-      file.puts "package #{context.package}.mapper;" if context.package
+      if context.mapper_package != ''
+        file.puts "package #{context.mapper_package};"
+      else
+        file.puts "package #{context.package}.mapper;" if context.package
+      end
       file.puts
       file.puts "import #{context.join_package_and_po_name};"
       file.puts
